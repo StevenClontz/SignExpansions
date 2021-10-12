@@ -52,6 +52,8 @@ def addDecimal(list):
     return returnString
 def addBinary(list1,list2,decimalpart):
 
+    print("Binary1",list1,"Binary2",list2)
+
     sumList = []
     remainder = ""
     for i in range(max(len(list1),len(list2))-1,-1,-1):
@@ -96,11 +98,16 @@ def addBinary(list1,list2,decimalpart):
 
     print("SumList",sumList)
     print("DecimalPart",decimalpart)
+    if decimalpart is None and sumList == []: return "0"
+    if decimalpart is None:
+        if sumList[0] == "R": sumList.insert(1,"L")
+        elif sumList[0] == "L": sumList.insert(1, "R")
+        return ''.join(sumList)
     if sumList != []:
         if decimalpart == [] or decimalpart[-1] == sumList[0] == "R": sumList.insert(1,"L")      # Rule 3
         elif decimalpart[-1] == sumList[0] == "L": sumList.insert(1, "R")
     if remainder != "": decimalpart = addDecimal(list(decimalpart)+[remainder])
-    if decimalpart is None and sumList == []: return "0"
+    #if decimalpart is None and sumList == []: return "0"
     return (decimalpart+''.join(sumList))
 def addNumbers(list1, list2):
     if getSplitPoint(list1,list1[0]) is None:
@@ -126,8 +133,8 @@ def addNumbers(list1, list2):
 
     return addBinary(binary1,binary2,decimalpart)
 
-x = list("RLLLLLLLL")
-y = list("RR")
+x = list("RL")
+y = list("RL")
 
 num = addNumbers(x,y)
 
