@@ -94,14 +94,13 @@ def addBinary(list1,list2,decimalpart):
                     sumList[0] == "R"
                     sumList.insert(0,"L")
 
+    print("SumList",sumList)
+    print("DecimalPart",decimalpart)
     if sumList != []:
         if decimalpart == [] or decimalpart[-1] == sumList[0] == "R": sumList.insert(1,"L")      # Rule 3
         elif decimalpart[-1] == sumList[0] == "L": sumList.insert(1, "R")
     if remainder != "": decimalpart = addDecimal(list(decimalpart)+[remainder])
-
-    #print(decimalpart)
-    #print(sumList)
-
+    if decimalpart is None and sumList == []: return "0"
     return (decimalpart+''.join(sumList))
 def addNumbers(list1, list2):
     if getSplitPoint(list1,list1[0]) is None:
@@ -118,18 +117,24 @@ def addNumbers(list1, list2):
         decimal2 = list2[:getSplitPoint(list2, list2[0])]
         binary2 = list2[getSplitPoint(list2, list2[0]):]
 
+    print("Decimal 1:",decimal1)
+    print("Decimal 2:", decimal2)
+    print("Binary 1:", binary1)
+    print("Binary 2:", binary2)
+
     decimalpart = addDecimal(decimal1+decimal2)
 
     return addBinary(binary1,binary2,decimalpart)
 
-x = list("RLRRRLR")
-y = list("RRRLLRLRL")
+x = list("RLLLLLLLL")
+y = list("RR")
 
 num = addNumbers(x,y)
 
 num = list(num)
 
-print("Value 1:", calculate(x), ''.join(x),
+print("=================\n"
+      "Value 1:", calculate(x), ''.join(x),
       "\nValue 2:", calculate(y), ''.join(y),
       "\nSum:", calculate(num), ''.join(num))
 
