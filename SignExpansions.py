@@ -35,6 +35,7 @@ def getSplitPoint(list, initialSign):
       else: return step
 # Create a larger list and set up the two numbers to add listwise
 def createSpace(list1,list2,initialSign1,initialSign2):
+  _list1 = list(list1)
   ogList2 = len(list2)
   # List extension
   list1.extend(['0'] * (2 * (len(list2) - 1)))
@@ -87,8 +88,9 @@ def addElements(list1, list2, splitPoint):
   if LFlag is True: sumList.insert(len(sumList),"L")
   return sumList
 
-x = ["R", "L"]
-y = ["R", "L"]
+from random import choice
+x = [choice(["R","L"]) for _ in range(3)]
+y = [choice(["R","L"]) for _ in range(3)]
 
 addNumbers(x,y)
 
