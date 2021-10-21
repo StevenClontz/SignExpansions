@@ -32,7 +32,20 @@ def se(num, steps = None, stop = False):
   s = 1
   treeVal = 0
   if steps is None:
-    pass
+    while s <= steps and binary != 0:
+      treeVal += calcBinary(s)
+      # print(binary,treeVal)
+      if binary == treeVal:
+        # print("a")
+        break
+      elif binary > treeVal:
+        # print("b")
+        bse += "R"
+      elif binary < treeVal:
+        # print("c")
+        bse += "L"
+        treeVal -= 2 * calcBinary(s) / 2
+      s += 1
   elif steps > 0: 
     while s <= steps and binary != 0: 
       treeVal += calcBinary(s) 
@@ -55,4 +68,4 @@ def se(num, steps = None, stop = False):
   return(se + bse)
 
 
-print(se(-3.125,3, True))
+print(se(-3.75,20, False))
